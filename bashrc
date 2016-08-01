@@ -17,14 +17,14 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 
 # Change the window title of X terminals 
-#case ${TERM} in
-#	xterm*|rxvt*|Eterm|aterm|kterm|gnome)
-#		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-#		;;
-#	screen)
+case ${TERM} in
+	xterm*|rxvt*|Eterm|aterm|kterm|gnome)
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+		;;
+	screen)
 		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
-#		;;
-#esac
+		;;
+esac
 
 # Personal prompt
 PS1="\[\033[01;30m\]\u@\h\[\033[01;35m\]:\w\n$\[\033[00m\] "
