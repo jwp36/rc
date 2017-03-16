@@ -6,16 +6,6 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-if [[ -f ~/.dir_colors ]] ; then
-	eval $(dircolors -b ~/.dir_colors)
-elif [[ -f /etc/DIR_COLORS ]] ; then
-	eval $(dircolors -b /etc/DIR_COLORS)
-fi
-
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
-
 # Change the window title of X terminals 
 case ${TERM} in
 	xterm*|rxvt*|Eterm|aterm|kterm|gnome)
@@ -26,10 +16,25 @@ case ${TERM} in
 		;;
 esac
 
+# History Configuration
+HISTCONTORL=ignoredups:ignorespace #Don't duplicate lines in the history
+shopt -s histappend #Append to the history file, don't overwrite it
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+if [[ -f ~/.dir_colors ]] ; then
+	eval $(dircolors -b ~/.dir_colors)
+elif [[ -f /etc/DIR_COLORS ]] ; then
+	eval $(dircolors -b /etc/DIR_COLORS)
+fi
+
+# Aliases
+alias ls='ls -l --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --color=auto'
+
 # Personal prompt
 PS1="\[\033[01;30m\]\u@\h\[\033[01;35m\]:\w\n$\[\033[00m\] "
-
-#Don't duplicate lines in the history
-HISTCONTORL=ignoredups:ignorespace
 
 set -o noclobber
