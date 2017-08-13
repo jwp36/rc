@@ -29,7 +29,14 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
 
+
+
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
+
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+
 
 call vundle#end()            
 filetype plugin indent on    
@@ -39,7 +46,8 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
-"PERSONAL CONFIGURATION 
+"DEFAULT CONFIGURATION 
+set encoding=utf-8
 colorscheme default
 syntax enable "Enable Syntax processing
 
@@ -55,6 +63,21 @@ set ruler "Always show the ruler
 set wildmenu "Visual autocomplete for commands
 
 set showmatch "Highlight matching brackets, parenthesis, etc.
-
 set incsearch "Search as characters are entered
 set hlsearch "Highlight matches
+
+"Folding
+set foldmethod=indent "Enable Folding
+set foldlevel=99
+nnoremap <space> za
+
+"PYTHON CONFIGURATION
+let python_highlight_all=1
+au BufNewFile,BufRead *.py set 
+            \ tabstop=4
+            \ softtabstop=4
+            \ expandtab
+            \ shiftwidth=4
+            \ autoindent
+            \ fileformat=unix
+
